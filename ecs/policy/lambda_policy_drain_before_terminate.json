@@ -1,0 +1,31 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "${LOG_ARN}:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecs:UpdateContainerInstancesState",
+                "ecs:DescribeContainerInstances"
+            ],
+            "Resource": "arn:aws:ecs:${REGION}:${ACCOUNT_ID}:container-instance/${ECS_CLUSTER_NAME}/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ecs:ListContainerInstances",
+            "Resource": "${ECS_CLUSTER_ARN}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "autoscaling:CompleteLifecycleAction",
+            "Resource": ${AUTOSCALING_GROUP}
+        }
+    ]
+}

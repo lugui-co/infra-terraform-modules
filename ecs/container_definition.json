@@ -1,0 +1,33 @@
+[
+    {
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${LOG_GROUP}",
+                "awslogs-region": "${REGION}",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "startTimeout": ${START_TIME},
+        "stopTimeout": ${STOP_TIME},
+        "essential": true,
+        "readonlyRootFilesystem": ${READ_ONLY},
+        "privileged": ${PRIVILEGED},
+        "dockerSecurityOptions": ${SECURTY_OPTIONS},
+        "linuxParameters": ${LINUX_PARAMETERS},
+        "portMappings": ${PORTS},
+        "mountPoints": ${VOLUME_MOUNT},
+        "cpu": ${CPU},
+        "memory": ${MEMORY},
+        "resourceRequirements": ${RESOURCE_REQUIREMENTS},
+        "environment": ${ENVIRONMENT_VARIABLES},
+        "secrets": ${SECRETS},
+        "entryPoint": ${ENTRYPOINT},
+        "command": ${COMMAND},
+        "image": "${REPOSITORY_URL}",
+        "name": "${SERVICE_NAME}",
+        "dockerLabels": {
+          "Name": "${SERVICE_NAME}"
+        }
+    }
+]
