@@ -1,0 +1,29 @@
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Retira imagens anonimas velhas",
+            "selection": {
+                "tagStatus": "untagged",
+                "countType": "sinceImagePushed",
+                "countUnit": "days",
+                "countNumber": 7
+            },
+            "action": {
+                "type": "expire"
+            }
+        },
+        {
+            "rulePriority": 2,
+            "description": "Retira imagens antigas e nao mais necessarias para backup",
+            "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 5
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
