@@ -58,3 +58,17 @@ resource "aws_route" "rout_to_igw" {
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.igw.id
 }
+
+resource "aws_route" "app_nat" {
+  count = length(aws_route_table.app.*.id)
+  route_table_id         = aws_route_table.app[count.index].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id        = aws_nat_gateway.nat[count.index].id
+}
+
+resource "aws_route" "db_nat" {
+  count = length(aws_route_table.db.*.id)
+  route_table_id         = aws_route_table.db[count.index].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id        = aws_nat_gateway.nat[count.index].id
+}
